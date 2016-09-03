@@ -38,6 +38,10 @@ defmodule Core.Router.Homepage do
     end
 
     route_param :task_id do
+      options do
+        json conn, %{ok: true}
+      end
+
       get do
         task = QueryWrapper.get_task_by_id(params[:task_id])
         json conn, task
@@ -50,13 +54,13 @@ defmodule Core.Router.Homepage do
         at_least_one_of [:title, :order, :completed]
       end
       patch do
-        changeset = params |> Enum.filter(fn {_, nil} -> false
-                                          _        -> true
+        changeset = params |> Enum.filter(fn { _, nil } -> false
+          _ -> true
         end)
-      |> Enum.into(%{})
+        |> Enum.into(%{})
 
-      updated_task = QueryWrapper.update_task(params[:task_id], changeset)
-      json conn, updated_task
+        updated_task = QueryWrapper.update_task(params[:task_id], changeset)
+        json conn, updated_task
       end
 
       delete do
