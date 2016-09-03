@@ -7,7 +7,7 @@ defmodule Core.Supervisor do
 
   def init([]) do
     [
-      worker(Core.Database, [[host: "db", port: 28015]])
+      worker(Core.Database, [[host: "rethinkdb", port: 28015]])
     ] |> supervise strategy: :one_for_one
   end
 end

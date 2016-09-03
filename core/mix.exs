@@ -14,7 +14,7 @@ defmodule Core.Mixfile do
   #
   # Type "mix help compile.app" for more information
   def application do
-    [applications: [:logger],
+    [applications: [:logger, :maru, :rethinkdb],
      mod: {Core, []}]
   end
 
@@ -29,7 +29,9 @@ defmodule Core.Mixfile do
   # Type "mix help deps" for more examples and options
   defp deps do
     [
-      {:rethinkdb, github: "hamiltop/rethinkdb-elixir"}
+      {:rethinkdb, github: "hamiltop/rethinkdb-elixir"},
+      {:cors_plug, "~> 1.1"},
+      {:maru, "~> 0.10.4"}
     ]
   end
 end
