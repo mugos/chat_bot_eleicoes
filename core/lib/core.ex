@@ -19,9 +19,4 @@ defmodule Core do
     # Supervisor.start_link(children, opts)
     Core.Supervisor.start_link
   end
-
-  def hello do
-    # RethinkDB.Connection.start_link([host: "10.0.0.17", port: 28015])
-    %{hello: "world"}
-  end
 end

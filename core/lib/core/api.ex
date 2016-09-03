@@ -2,6 +2,7 @@ defmodule Core.API do
   use Maru.Router
   plug CORSPlug
   plug Plug.Logger
+  plug Plug.Parsers, parsers: [:json], json_decoder: Poison
 
   mount Core.Router.Homepage
 

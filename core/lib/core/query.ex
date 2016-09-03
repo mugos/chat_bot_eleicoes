@@ -6,16 +6,18 @@ defmodule Core.QueryWrapper do
   import RethinkDB.Lambda
 
   def get_all_tasks do
-    tasks = table("tasks") |> Database.run
+    {:ok, tasks} = table("tasks") |> Database.run
     tasks.data
   end
 
   def create_task(new_task, ip_address) do
-    task = table("tasks") |> insert(new_task, %{return_changes: true})
-                          |> Database.run
+    {:ok, task} = table("tasks")
+                  |> insert(new_task, %{return_changes: true})
+                  |> Database.run
+
 
     task_id = hd(task.data["generated_keys"])
-    url_included = table("tasks")
+    {:ok, url_included} = table("tasks")
       |> get(task_id)
       |> update(lambda(fn (task) -> %{url: "http://" <> ip_address <> ":8880/tasks/#{task_id}"} end),
                 %{return_changes: true})
@@ -25,17 +27,22 @@ defmodule Core.QueryWrapper do
   end
 
   def delete_all_tasks do
-    tasks = table("tasks")
+    {:ok, tasks} = table("tasks")
       |> delete
       |> Database.run
       # |> IO.inspect
+    tasks
   end
 
   def get_task_by_id(id_to_get) do
-    task = table("tasks")
+    {:ok, task} = table("tasks")
       |> filter(%{id: id_to_get})
       |> Database.run
-      |> IO.inspect
+
+    IO.inspect "helllo"
+    IO.inspect task
+    IO.inspect hd(task.data)
+    IO.inspect "goodby"
 
     hd(task.data)
   end

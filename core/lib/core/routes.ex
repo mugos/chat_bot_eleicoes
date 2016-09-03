@@ -11,8 +11,12 @@ defmodule Core.Router.Homepage do
       json conn, tasks
     end
 
+    options do
+      json conn, %{ok: true}
+    end
+
     params do
-      requires :title,     type: String
+      optional :title,     type: String
       optional :order,     type: Integer
       optional :completed, type: Boolean, default: false
     end
@@ -23,6 +27,7 @@ defmodule Core.Router.Homepage do
           acc <> Integer.to_string(num) <> "."
         end)
         |> String.strip(?.)
+
       task = QueryWrapper.create_task(params, (ip_address <> "00"))
       json conn, task
     end
@@ -46,12 +51,12 @@ defmodule Core.Router.Homepage do
       end
       patch do
         changeset = params |> Enum.filter(fn {_, nil} -> false
-                                             _        -> true
-                                          end)
-                           |> Enum.into(%{})
+                                          _        -> true
+        end)
+      |> Enum.into(%{})
 
-        updated_task = QueryWrapper.update_task(params[:task_id], changeset)
-        json conn, updated_task
+      updated_task = QueryWrapper.update_task(params[:task_id], changeset)
+      json conn, updated_task
       end
 
       delete do
