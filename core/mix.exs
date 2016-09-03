@@ -28,6 +28,8 @@ defmodule Core.Mixfile do
   #
   # Type "mix help deps" for more examples and options
   defp deps do
-    []
+    [
+      {:rethinkdb, github: "hamiltop/rethinkdb-elixir"}
+    ]
   end
 end
