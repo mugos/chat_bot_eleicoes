@@ -13,6 +13,7 @@ defmodule Core.Messenger.Handlers.GreetingHandler do
   def handle_event({:message, %{"intent" => "Saudacao", "score" => _}, user, _}, messages) do
     # Send a message
     Sender.send user, "Ola #{user}"
+    Sender.send user, "Em que posso te ajudar?"
 
     # OK!
     { :ok, messages }
@@ -20,7 +21,7 @@ defmodule Core.Messenger.Handlers.GreetingHandler do
 
   @doc """
   """
-  def handle_event({:message, %{"intent" => "Negativa", "score" => _}, user, _}, messages) do
+  def handle_event({:message, %{"intent" => "Negativo", "score" => _}, user, _}, messages) do
     # Send a message
     Sender.send user, "Ok, entao"
 
