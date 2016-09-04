@@ -34,7 +34,7 @@ defmodule Core.API do
     { :ok, body, conn } = read_body(conn)
 
     # Send to the parser
-    Core.Messenger.receive body
+    Core.Messenger.EventServer.receive body
 
     # Respond the 200
     conn |> resp(200, "OK")
