@@ -29,6 +29,19 @@ defmodule Core.Messenger.EventServer do
 
   @doc """
   """
+  def challange(%{"hub.mode" => "subscribe",
+                  "hub.verify_token" => token,
+                  "hub.challenge" => challenge} = params) do
+    # Check if the token is the same
+    case token == token do
+      true -> { :ok, challenge }
+      _ -> :error
+    end
+  end
+  def challenge(params), do: :error
+
+  @doc """
+  """
   def receive(params) when is_bitstring(params) do
     response = Core.Messenger.Types.Response.parse(params)
     Logger.info("Recevied messsages #{inspect(response)}")
@@ -47,4 +60,8 @@ defmodule Core.Messenger.EventServer do
     Logger.info("Webhook bad request with params #{inspect(params)}")
     :error
   end
+
+  @doc """
+  """
+  defp token, do: Application.get_env(:facebook_messenger, :challenge_verification_token)
 end
