@@ -9,7 +9,7 @@ defmodule Core.Messenger.Sender do
   @doc """
   Send a message to an user
   """
-  @spec send(String.t, String.t) :: HTTPotion.Response.t
+  @spec send(String.t, String.t) :: HTTPoison.Response.t
   def send(recepient, message) do
     # Send a request
     res = post(
@@ -33,7 +33,7 @@ defmodule Core.Messenger.Sender do
 
   # Send a Post using HTTPotion
   defp post(body: body) do
-    HTTPotion.post url, body: body, headers: ["Content-Type": "application/json"]
+    HTTPoison.post url, body, ["Content-Type": "application/json"]
   end
 
   # Return the url to hit to send the message
