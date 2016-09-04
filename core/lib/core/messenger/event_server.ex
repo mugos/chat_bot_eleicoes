@@ -20,7 +20,7 @@ defmodule Core.Messenger.EventServer do
   @doc """
   """
   def add_handler(handler) do
-    GenEvent.add_handler(@server, handler, [])
+    GenEvent.add_mon_handler(@server, handler, [])
   end
 
   @doc """
