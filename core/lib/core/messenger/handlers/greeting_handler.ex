@@ -10,7 +10,7 @@ defmodule Core.Messenger.Handlers.GreetingHandler do
 
   @doc """
   """
-  def handle_event({:message, %{"intend": "Saudacao", "score": _}, user, _}, messages) do
+  def handle_event({:message, %{"intent" => "Saudacao", "score" => _}, user, _}, messages) do
     # Send a message
     Sender.send user, "Ola #{user}"
 
