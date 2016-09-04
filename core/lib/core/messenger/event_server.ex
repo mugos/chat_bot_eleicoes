@@ -52,11 +52,15 @@ defmodule Core.Messenger.EventServer do
   defp _receive(params) do
     # Parse the message
     response = Core.Messenger.Types.Response.parse(params)
-    # TODO: patern match the shit out of this to get user
-    # IO.inspect response
 
-    # Notify
-    notify {:message, 'GreetingMessage', "1212084815530974"}
+    # Messages
+    messages = Core.Messenger.Types.Response.message_texts response
+
+    # Users
+    users = Core.Messenger.Types.Response.message_senders response
+
+    # Here come the TAIL!!!!
+    proccess_message messages, users
 
     # Log the message
     Logger.info("Recevied messsages #{inspect(response)}")
@@ -64,6 +68,19 @@ defmodule Core.Messenger.EventServer do
     # Return!
     { :ok, response }
   end
+
+  # Process a message
+  defp proccess_message([ message | tail ], [ user | user_tail ]) do
+    # Classify the message
+    class = Core.AI.classificate(message)["intents"] |> hd
+
+    # Notify the message
+    notify {:message, class, user, []}
+
+    # Keep running it
+    proccess_message(tail, user_tail)
+  end
+  defp proccess_message([], []), do: :ok
 
   # Verification token
   defp app_token, do: Application.get_env(:core, :fb)[:verification]

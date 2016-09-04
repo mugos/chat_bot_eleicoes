@@ -11,18 +11,15 @@ defmodule Core.AI do
     # Get the information from the Mix.Config
     config = Application.get_env(:core, :luis)
 
-    #
-    # HTTPoison.get classification_url(config[:id], message), [{ "Ocp-Apim-Subscription-Key", config[:token] }]
-    # HTTPoison.get "https://api.projectoxford.ai/luis/v1/application?id=35c27d37-9c52-453c-9ee9-c5f34db8cdf1", [{ "Ocp-Apim-Subscription-Key", config[:token] }] 
+    # Generate URL
+    url = "https://api.projectoxford.ai/luis/v1/application?id=#{config[:id]}&subscription-key=#{config[:key]}&q=#{URI.encode_www_form(message)}"
 
-    url = "https://api.projectoxford.ai/luis/v1/application?id=#{config[:id]}&subscription-key=#{config[:key]}&q=#{message}"
-
-    { :ok, 200, _headers, client } = :hackney.get(url, ['ocp-apim-subscription-key': config[:token]])
+    # Request it
+    { :ok, 200, _, client } = :hackney.get(url, ['ocp-apim-subscription-key': config[:token]])
     { :ok, body } = :hackney.body(client)
 
-    # IO.inspect body
-    # IO.inspect Poison.parse!(body)
-    body
+    # Parse the response
+    body |> Poison.decode!
   end
 
   # def sentiment(message) do
@@ -33,8 +30,8 @@ defmodule Core.AI do
   #   struct |> Poison.encode! |> elem(1)
   # end
 
-  defp classification_url(app, message) do
-    # Return the URL
-    "https://api.projectoxford.ai/luis/v1.0/prog/apps/#{app}/predict?example=#{message}"
-  end
+  # defp classification_url(app, message) do
+  #   # Return the URL
+  #   "https://api.projectoxford.ai/luis/v1.0/prog/apps/#{app}/predict?example=#{message}"
+  # end
 end

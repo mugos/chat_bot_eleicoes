@@ -10,14 +10,9 @@ defmodule Core.Messenger.Handlers.GreetingHandler do
 
   @doc """
   """
-  def handle_event({:message, 'GreetingMessage', recipient}, messages) do
-    # IO.inspect "hello from the prety handler"
-
-    #
-    # IO.inspect messages
-
+  def handle_event({:message, %{"intend": "Saudacao"}, user, _}, messages) do
     # Send a message
-    Sender.send recipient, "Bom dia!"
+    Sender.send user, "Ola #{user}"
 
     # OK!
     { :ok, messages }
