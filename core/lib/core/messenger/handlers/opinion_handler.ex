@@ -15,7 +15,8 @@ defmodule Core.Messenger.Handlers.OpinionHandler do
     possible = [
       "e porque voce acha isso?",
       "conte me mais",
-      "interresante... vou anotar"
+      "interresante... vou anotar",
+      "algo mais?"
     ]
 
     # Send a message
