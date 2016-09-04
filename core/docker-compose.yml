@@ -21,7 +21,7 @@ services:
 
   ngrok:
     image: wernight/ngrok
-    command: http web:8000
+    command: ngrok http web:8000
     depends_on:
       - web
 
