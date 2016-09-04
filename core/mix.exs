@@ -14,7 +14,7 @@ defmodule Core.Mixfile do
   #
   # Type "mix help compile.app" for more information
   def application do
-    [applications: [:logger, :rethinkdb, :cowboy, :plug, :httpotion],
+    [applications: [:logger, :rethinkdb, :cowboy, :plug, :httpoison],
      mod: {Core, []}]
   end
 
@@ -33,7 +33,7 @@ defmodule Core.Mixfile do
       {:cors_plug, "~> 1.1"},
       {:cowboy, "~> 1.0.0"},
       {:plug, "~> 1.0"},
-      {:httpotion, "~> 3.0"}
+      {:httpoison, "~> 0.9.0"}
     ]
   end
 end

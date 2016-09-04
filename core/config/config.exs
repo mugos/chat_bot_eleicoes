@@ -18,4 +18,4 @@ config :core, :fb,
 # Luis Configurations
 config :core, :luis,
   id: "35c27d37-9c52-453c-9ee9-c5f34db8cdf1",
-  key: "ee51f545cf6c4f54bfd46145a151b4a6"
+  token: "35d9869c0b9444c88f57342cc2d03379"
