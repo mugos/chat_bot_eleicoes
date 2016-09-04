@@ -18,8 +18,8 @@ dg() {
 }
 
 recreate() {
-  # dg gcloud compute disks delete hackathon-core-web-disk
-  # dg gcloud compute disks create --size=100GB --zone=us-east1-d hackathon-core-web-disk
+  dg gcloud compute disks delete hackathon-data
+  dg gcloud compute disks create --size=100GB --zone=us-east1-d hackathon-data
   # local function that list gcloud disks
   list_disks
 }
@@ -29,13 +29,15 @@ list_disks() {
 }
 
 create() {
-  dg kubectl create -f ./web.yaml
-  dg kubectl create -f ./rethinkdb.yaml
+  echo "Ta criado, não força"
+  # dg kubectl create -f ./web.yaml
+  # dg kubectl create -f ./rethinkdb.yaml
 }
 
 delete() {
-  dg kubectl delete -f ./web.yaml
-  dg kubectl delete -f ./rethinkdb.yaml
+  echo "Deleta não campeão, vai perder o ip PORRA"
+  # dg kubectl delete -f ./web.yaml
+  # dg kubectl delete -f ./rethinkdb.yaml
 }
 
 update() {
@@ -61,6 +63,16 @@ push(){
   dg gcloud docker push "gcr.io/yebo-project/hackathon-core-web:latest"
 }
 
+deploy() {
+  vim ../VERSION
+  docker-compose -f ../production.yml build
+  docker tag hackathon-core-web "gcr.io/yebo-project/hackathon-core-web:$VERSION"
+  docker tag hackathon-core-web "gcr.io/yebo-project/hackathon-core-web:latest"
+  dg gcloud docker push "gcr.io/yebo-project/hackathon-core-web:$VERSION"
+  dg gcloud docker push "gcr.io/yebo-project/hackathon-core-web:latest"
+  echo "dg kubectl rolling-update hackathon-core-web --image=\"gcr.io/yebo-project/hackathon-core-web:$VERSION\""
+}
+
 continue() {
   read -p "Press [Enter] key to continue..." key
 }
@@ -71,30 +83,33 @@ do
   echo "---------------------------------"
   echo "       M A I N - M E N U"
   echo "---------------------------------"
-  echo '1. delete'
-  echo '2. create'
-  echo '3. list'
-  echo '4. update'
-  echo '5. recreate disks'
-  echo '6. list  disks'
-  echo '7. push'
+  echo '1. deploy'
+  echo '2. delete'
+  echo '3. create'
+  echo '4. list'
+  echo '5. update'
+  echo '6. recreate disks'
+  echo '7. list  disks'
+  echo '8. push'
   echo '0. exit'
   echo "---------------------------------"
   read -r -p "Enter your choice: " option
   case ${option} in
-    1) delete
+    1) deploy
       continue;;
-    2) create
+    2) delete
       continue;;
-    3) list
+    3) create
       continue;;
-    4) update
+    4) list
       continue;;
-    5) recreate
+    5) update
       continue;;
-    6) list_disks
+    6) recreate
       continue;;
-    7) push
+    7) list_disks
+      continue;;
+    8) push
       continue;;
     0) break;;
   esac

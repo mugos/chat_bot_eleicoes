@@ -5,3 +5,10 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.prod
+
+  ngrok:
+    image: hackathon-core-ngrok
+    build:
+      context: .
+      dockerfile: Dockerfile.ngrok
+
