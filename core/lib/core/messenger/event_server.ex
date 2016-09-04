@@ -29,7 +29,7 @@ defmodule Core.Messenger.EventServer do
 
   @doc """
   """
-  def challange(%{ "hub.verify_token" => token,
+  def challenge(%{ "hub.verify_token" => token,
                    "hub.challenge" => challenge } = _) do
     # Check if the token is the same
     case token == app_token do
@@ -37,7 +37,7 @@ defmodule Core.Messenger.EventServer do
       _ -> :error
     end
   end
-  def challange(_), do: :error
+  def challenge(_), do: :error
 
   @doc """
   Receive the message from WebHook
