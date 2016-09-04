@@ -20,7 +20,7 @@ defmodule Core.API do
     params = fetch_query_params(conn).params
 
     # Check the challange token
-    case Core.Messenger.EventServer.challange() do
+    case Core.Messenger.EventServer.challange(params) do
       {:ok, challange} ->
         conn |> resp(200, challange)
       _ ->
