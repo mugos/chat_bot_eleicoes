@@ -12,7 +12,9 @@ defmodule Core.Messenger.EventServer do
   @doc """
   """
   def start_link([]) do
-    GenEvent.start_link([{ :name, @server }])
+    { :ok, pid } = GenEvent.start_link([{ :name, @server }])
+    add_handler(Core.Messenger.Handlers.GreatingHandler)
+    { :ok, pid }
   end
 
   @doc """
