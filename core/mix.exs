@@ -14,8 +14,10 @@ defmodule Core.Mixfile do
   #
   # Type "mix help compile.app" for more information
   def application do
-    [applications: [:logger, :rethinkdb, :cowboy, :plug, :httpoison],
-     mod: {Core, []}]
+    [
+      applications: [:logger, :rethinkdb, :cowboy, :plug, :httpoison, :inets, :hackney],
+      mod: {Core, []}
+    ]
   end
 
   # Dependencies can be Hex packages:
@@ -33,7 +35,8 @@ defmodule Core.Mixfile do
       {:cors_plug, "~> 1.1"},
       {:cowboy, "~> 1.0.0"},
       {:plug, "~> 1.0"},
-      {:httpoison, "~> 0.9.0"}
+      {:poison, "~> 2.0"},
+      {:hackney, github: "benoitc/hackney"}
     ]
   end
 end
