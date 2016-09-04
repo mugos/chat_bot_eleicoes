@@ -13,7 +13,7 @@ defmodule Core.Messenger.EventServer do
   """
   def start_link([]) do
     { :ok, pid } = GenEvent.start_link([{ :name, @server }])
-    add_handler(Core.Messenger.Handlers.GreatingHandler)
+    add_handler(Core.Messenger.Handlers.GreetingHandler)
     { :ok, pid }
   end
 
@@ -52,9 +52,11 @@ defmodule Core.Messenger.EventServer do
   defp _receive(params) do
     # Parse the message
     response = Core.Messenger.Types.Response.parse(params)
+    # TODO: patern match the shit out of this to get user
+    IO.inspect response
 
     # Notify
-    notify {:message, 'GreetingMessage', "1330353076982728"}
+    notify {:message, 'GreetingMessage', "1212084815530974"}
 
     # Log the message
     Logger.info("Recevied messsages #{inspect(response)}")
