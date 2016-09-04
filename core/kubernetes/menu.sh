@@ -39,9 +39,7 @@ delete() {
 }
 
 update() {
-  push
-  echo "dg kubectl rolling-update hackathon-core-web
-  --image=\"gcr.io/yebo-project/hackathon-core-web:$VERSION\""
+  echo "dg kubectl rolling-update hackathon-core-web --image=\"gcr.io/yebo-project/hackathon-core-web:$VERSION\""
 }
 
 list() {

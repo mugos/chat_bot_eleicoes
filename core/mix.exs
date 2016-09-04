@@ -33,8 +33,7 @@ defmodule Core.Mixfile do
       {:cors_plug, "~> 1.1"},
       {:cowboy, "~> 1.0.0"},
       {:plug, "~> 1.0"},
-      {:httpotion, "~> 3.0"},
-      {:maru, "~> 0.10.4"}
+      {:httpotion, "~> 3.0"}
     ]
   end
 end

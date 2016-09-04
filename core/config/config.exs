@@ -36,7 +36,7 @@ case Mix.env do
   :prod ->
     config :core, :port, 80
   _ ->
-    config :core, :port, 8080
+    config :core, :port, 8000
 end
 
 # Config messenger
