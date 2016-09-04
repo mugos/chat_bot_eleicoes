@@ -16,8 +16,16 @@ defmodule Core.API do
 
   #
   get "/api/webhook" do
-    # Respond the 200
-    conn |> resp(200, "")
+    # Fetch the Params
+    params = fetch_query_params(conn).params
+
+    # Check the challange token
+    case Core.Messenger.EventServer.challange() do
+      {:ok, challange} ->
+        conn |> resp(200, challange)
+      _ ->
+        conn |> resp(500, "")
+    end
   end
 
   #
