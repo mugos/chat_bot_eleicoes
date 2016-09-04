@@ -8,6 +8,7 @@ defmodule WebhookTest do
   test "test handshake" do
     IO.inspect conn(:get, "/")
 
+    {:ok, 200, _headers, client} = :hackney.get()
     # assert %Plug.Conn{
     #   resp_body: "It works! port: 8800"
     # } = conn(:post, "api/webhook")
