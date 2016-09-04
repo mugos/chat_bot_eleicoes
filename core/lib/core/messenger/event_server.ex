@@ -53,6 +53,9 @@ defmodule Core.Messenger.EventServer do
     # Parse the message
     response = Core.Messenger.Types.Response.parse(params)
 
+    # Notify
+    notify {:message, 'GreetingMessage', "1330353076982728"}
+
     # Log the message
     Logger.info("Recevied messsages #{inspect(response)}")
 
