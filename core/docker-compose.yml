@@ -4,6 +4,7 @@ services:
     build: .
     ports:
       - 8000:8000
+      - 80:8000
     working_dir: /app
     command: mix run --no-halt
     volumes:
@@ -17,4 +18,10 @@ services:
       - 8080:8080
       - 28015:28015
       - 29015:29015
+
+  ngrok:
+    image: wernight/ngrok
+    command: http web:8000
+    depends_on:
+      - web
 

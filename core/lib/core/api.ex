@@ -5,6 +5,7 @@ defmodule Core.API do
   plug Plug.Parsers, parsers: [:json], json_decoder: Poison
 
   mount Core.Router.Homepage
+  mount Core.Router.Webhook
 
   rescue_from :all, as: e do
     IO.inspect(e)

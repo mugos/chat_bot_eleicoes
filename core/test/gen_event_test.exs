@@ -5,9 +5,9 @@ defmodule GenEventTest do
   alias Core.Messenger.EventServer
   alias Core.Messenger.Handlers
 
-  test "test gen event" do
+  test "test gen even notify" do
     { :ok, _} = EventServer.start_link []
     :ok = EventServer.add_handler Handlers.GreetingHandler
-    :ok = Handlers.notify {:message, 'GreetingMessage'}
+    :ok = EventServer.notify {:message, 'GreetingMessage'}
   end
 end
