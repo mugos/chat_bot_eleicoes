@@ -19,7 +19,7 @@ defmodule Core.QueryWrapper do
     task_id = hd(task.data["generated_keys"])
     {:ok, url_included} = table("tasks")
       |> get(task_id)
-      |> update(lambda(fn (task) -> %{url: "http://" <> ip_address <> ":8880/tasks/#{task_id}"} end),
+      |> update(lambda(fn (task) -> %{url: "http://" <> "localhost" <> ":8000/tasks/#{task_id}"} end),
                 %{return_changes: true})
       |> Database.run
 
@@ -30,7 +30,7 @@ defmodule Core.QueryWrapper do
     {:ok, tasks} = table("tasks")
       |> delete
       |> Database.run
-      # |> IO.inspect
+
     tasks
   end
 
@@ -39,16 +39,11 @@ defmodule Core.QueryWrapper do
       |> filter(%{id: id_to_get})
       |> Database.run
 
-    IO.inspect "helllo"
-    IO.inspect task
-    IO.inspect hd(task.data)
-    IO.inspect "goodby"
-
     hd(task.data)
   end
 
   def update_task(id, changeset) do
-    updated_task = table("tasks")
+    { :ok, updated_task } = table("tasks")
       |> get(id)
       |> update(changeset, %{return_changes: true})
       |> Database.run
@@ -57,13 +52,12 @@ defmodule Core.QueryWrapper do
   end
 
   def delete_task(id) do
-    table("tasks")
+    { :ok, delete_task  } = table("tasks")
       |> get(id)
       |> delete
       |> Database.run
-      |> IO.inspect
 
-
+    delete_task
   end
 
 end
