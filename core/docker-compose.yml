@@ -10,9 +10,9 @@ services:
     volumes:
       - ./:/app
     depends_on:
-      - rethinkdb # wait to be starded
+      - hackathon-core-rethinkdb # wait to be starded
 
-  rethinkdb:
+  hackathon-core-rethinkdb:
     image: rethinkdb
     ports:
       - 8080:8080
@@ -21,7 +21,7 @@ services:
 
   ngrok:
     image: wernight/ngrok
-    command: http web:8000
+    command: ngrok http web:8000
     depends_on:
       - web
 

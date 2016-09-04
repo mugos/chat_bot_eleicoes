@@ -2,11 +2,14 @@ defmodule WebhookTest do
   use ExUnit.Case
   doctest Core
 
-  use Maru.Test, for: Core.Router.Webhook
+  # use Maru.Test, for: Core.Router.Webhook
+  use Plug.Test
 
   test "test handshake" do
-    assert %Plug.Conn{
-      resp_body: "It works! port: 8800"
-    } = conn(:get, "/webhook") |> make_response
+    IO.inspect conn(:get, "/")
+
+    # assert %Plug.Conn{
+    #   resp_body: "It works! port: 8800"
+    # } = conn(:post, "api/webhook")
   end
 end

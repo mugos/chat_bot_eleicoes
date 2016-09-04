@@ -1,0 +1,26 @@
+Version 0.1.0
+ - Merge branch 'master' of github.com:yurifrl/hackathon
+ - Calling the right method
+ - Adding page token
+ - Merge branch 'master' of github.com:yurifrl/hackathon
+ - Passing params to the challange parser
+ - Merge branch 'master' of github.com:yurifrl/hackathon
+ - test
+ - Starts validating the token
+ - Make challange and message endpoints work
+ - Merge branch 'master' of github.com:yurifrl/hackathon
+ - ngirocks
+ - Using Plug and Getting some Messenger types
+ - Merge branch 'master' of github.com:yurifrl/hackathon
+ - routers folders
+ - Adding Plug and Cowboy to the party
+ - Merge branch 'master' of github.com:yurifrl/hackathon
+ - test
+ - Adding messager module
+ - taks crud
+ - save
+ - server uo
+ - save
+ - real init
+ - init base
+
