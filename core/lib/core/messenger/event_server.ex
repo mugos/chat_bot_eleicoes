@@ -29,16 +29,16 @@ defmodule Core.Messenger.EventServer do
 
   @doc """
   """
-  def challange(%{"hub.mode" => "subscribe",
-                  "hub.verify_token" => token,
-                  "hub.challenge" => challenge} = params) do
+  def challange(%{ "hub.mode" => "subscribe",
+                   "hub.verify_token" => token,
+                   "hub.challenge" => challenge } = _) do
     # Check if the token is the same
-    case token == token do
+    case app_token == token do
       true -> { :ok, challenge }
       _ -> :error
     end
   end
-  def challenge(params), do: :error
+  def challenge(_), do: :error
 
   @doc """
   """
@@ -61,7 +61,5 @@ defmodule Core.Messenger.EventServer do
     :error
   end
 
-  @doc """
-  """
-  defp token, do: Application.get_env(:facebook_messenger, :challenge_verification_token)
+  defp app_token, do: Application.get_env(:core, :fb)[:verification]
 end

@@ -31,7 +31,20 @@ use Mix.Config
 config :maru, Core.API,
   http: [port: 8000]
 
+# Different Ports depending on the env
+case Mix.env do
+  :prod ->
+    config :core, :port, 80
+  _ ->
+    config :core, :port, 8080
+end
+
 # Config messenger
-config :facebook_messenger,
-       facebook_page_token: "EAACzIvBu0y0BAIEYQRFAVzxkkJAOER6eoPvA8nwYylooILV9xJG6tuymVLxpKDvBtPfZBREd1r2wkZBqzOI2mKpV3hX8n6cRSNO8qKBPTGO9Y6H4GWIu2NHcNJZBaSJWwSWVNDJfQrZAwdLINyB2CXtbzbG2kNInzHKGfsaZBgAZDZD",
-       challenge_verification_token: "T0pS3Cr3T"
+config :core, :fb,
+  token: "EAACzIvBu0y0BAIEYQRFAVzxkkJAOER6eoPvA8nwYylooILV9xJG6tuymVLxpKDvBtPfZBREd1r2wkZBqzOI2mKpV3hX8n6cRSNO8qKBPTGO9Y6H4GWIu2NHcNJZBaSJWwSWVNDJfQrZAwdLINyB2CXtbzbG2kNInzHKGfsaZBgAZDZD",
+  verification: "T0pS3Cr3T"
+
+# Luis Configurations
+config :core, :luis,
+  id: "",
+  key: ""
