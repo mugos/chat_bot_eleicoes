@@ -3,7 +3,7 @@
   "cowboy": {:hex, :cowboy, "1.0.4", "a324a8df9f2316c833a470d918aaf73ae894278b8aa6226ce7a9bf699388f878", [:rebar, :make], [{:cowlib, "~> 1.0.0", [hex: :cowlib, optional: false]}, {:ranch, "~> 1.0", [hex: :ranch, optional: false]}]},
   "cowlib": {:hex, :cowlib, "1.0.2", "9d769a1d062c9c3ac753096f868ca121e2730b9a377de23dec0f7e08b1df84ee", [:make], []},
   "facebook_messenger": {:hex, :facebook_messenger, "0.3.0", "17824a0482b6da26582a16f6d85d282526b2b7fd6f992f17a27ca42b801d9335", [:mix], [{:httpotion, "~> 2.2", [hex: :httpotion, optional: false]}, {:plug, "> 0.0.0", [hex: :plug, optional: false]}, {:poison, "~> 2.1.0", [hex: :poison, optional: false]}]},
-  "httpotion": {:hex, :httpotion, "2.2.2", "f1ce1a06f6a12ee195d9b2c458c3239efc8046f2b8247e708606cad5a3f2c7d8", [:mix], [{:ibrowse, "~> 4.2", [hex: :ibrowse, optional: false]}]},
+  "httpotion": {:hex, :httpotion, "3.0.1", "6165e7fe4052dfeadd4b480e4ed6619975242ac91d577e4868af92613f9e99df", [:mix], [{:ibrowse, "~> 4.2", [hex: :ibrowse, optional: false]}]},
   "ibrowse": {:hex, :ibrowse, "4.2.2", "b32b5bafcc77b7277eff030ed32e1acc3f610c64e9f6aea19822abcadf681b4b", [:rebar3], []},
   "maru": {:hex, :maru, "0.10.4", "dc147658dfe7103f56dd4ad1237452bd415ef8f577519e26056ad627da5d0250", [:mix], [{:cowboy, "~> 1.0", [hex: :cowboy, optional: false]}, {:plug, "~> 1.0", [hex: :plug, optional: false]}, {:poison, "~> 1.5 or ~> 2.0", [hex: :poison, optional: false]}]},
   "mime": {:hex, :mime, "1.0.1", "05c393850524767d13a53627df71beeebb016205eb43bfbd92d14d24ec7a1b51", [:mix], []},
