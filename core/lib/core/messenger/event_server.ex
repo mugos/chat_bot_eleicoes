@@ -53,7 +53,7 @@ defmodule Core.Messenger.EventServer do
     # Parse the message
     response = Core.Messenger.Types.Response.parse(params)
     # TODO: patern match the shit out of this to get user
-    IO.inspect response
+    # IO.inspect response
 
     # Notify
     notify {:message, 'GreetingMessage', "1212084815530974"}

@@ -28,8 +28,8 @@ defmodule Core.Messenger.Sender do
 
   # Send a Post using HTTPotion
   defp post(body) do
-    { :ok, client_ref } = :hackney.request :post, url, ["Content-Type": "application/json"], body
-    { :ok, body } = :hackney.body client_ref
+    { :ok, status, headers, ref } = :hackney.request :post, url, ["Content-Type": "application/json"], body
+    { :ok, body } = :hackney.body ref
     Poison.decode! body
   end
 

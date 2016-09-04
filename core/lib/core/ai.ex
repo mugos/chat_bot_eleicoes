@@ -20,8 +20,8 @@ defmodule Core.AI do
     { :ok, 200, _headers, client } = :hackney.get(url, ['ocp-apim-subscription-key': config[:token]])
     { :ok, body } = :hackney.body(client)
 
-    IO.inspect body
-    IO.inspect Poison.parse!(body)
+    # IO.inspect body
+    # IO.inspect Poison.parse!(body)
     body
   end
 
