@@ -33,6 +33,5 @@ config :maru, Core.API,
 
 # Config messenger
 config :facebook_messenger,
-       facebook_page_token: "PAGE_TOKEN",
-       challenge_verification_token: "T0pS3Cr3T",
-       endpoint: "/messenger/webhook"
+       facebook_page_token: "EAACzIvBu0y0BAIEYQRFAVzxkkJAOER6eoPvA8nwYylooILV9xJG6tuymVLxpKDvBtPfZBREd1r2wkZBqzOI2mKpV3hX8n6cRSNO8qKBPTGO9Y6H4GWIu2NHcNJZBaSJWwSWVNDJfQrZAwdLINyB2CXtbzbG2kNInzHKGfsaZBgAZDZD",
+       challenge_verification_token: "T0pS3Cr3T"
