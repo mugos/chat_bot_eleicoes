@@ -34,4 +34,5 @@ spec:
         ports:
         - containerPort: 443
         - containerPort: 80
+        - containerPort: 4040
 
