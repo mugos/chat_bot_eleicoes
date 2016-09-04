@@ -19,7 +19,9 @@ defmodule Core.Messenger.Handlers.AboutCandidates do
       ], "intent" => "SobreOCandidato", "score" => _}, user, _}, messages) do
 
     # Send a message
-    Sender.send user, "#{info_candidate}"
+    # Sender.send user, "#{info_candidate}"
+    # Sender.send user, "Voce se interresa no trabalho dele?"
+    Sender.send user, "O #{String.capitalize(entity)} pertence ao partido #{Enum.random(["PEN", "SD", "NOVO"])} e nao possui grande autacao na politica."
     Sender.send user, "Voce se interresa no trabalho dele?"
 
     # OK!
