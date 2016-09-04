@@ -14,7 +14,7 @@ defmodule Core.Mixfile do
   #
   # Type "mix help compile.app" for more information
   def application do
-    [applications: [:logger, :maru, :rethinkdb, :cowboy, :plug],
+    [applications: [:logger, :rethinkdb, :cowboy, :plug],
      mod: {Core, []}]
   end
 

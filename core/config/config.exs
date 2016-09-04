@@ -30,3 +30,9 @@ use Mix.Config
 #     import_config "#{Mix.env}.exs"
 config :maru, Core.API,
   http: [port: 8000]
+
+# Config messenger
+config :facebook_messenger,
+       facebook_page_token: "PAGE_TOKEN",
+       challenge_verification_token: "VERIFY_TOKEN",
+       endpoint: "/messenger/webhook"

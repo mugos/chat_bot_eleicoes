@@ -1,11 +1,8 @@
+#
 defmodule Core.Router.Webhook do
-  use Maru.Router
+  @moduledoc """
+  """
 
-  version "v1"
-
-  namespace :webhook do
-    get do
-      json conn, %{alive: true}
-    end
-  end
+  # Using module
+  # use Plug.Router
 end
