@@ -19,6 +19,17 @@ defmodule Core.Messenger.Handlers.GreetingHandler do
   end
 
   @doc """
+  """
+  def handle_event({:message, %{"intent" => "Despedida", "score" => _}, user, _}, messages) do
+    # Send a message
+    Sender.send user, "Foi boa a conversa, ate a proxima."
+
+    # OK!
+    { :ok, messages }
+  end
+
+
+  @doc """
   Fall Back for unknow messages
   """
   def handle_event({ :message, intent, user, _ }, messages) do
