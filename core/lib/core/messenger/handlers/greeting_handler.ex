@@ -21,5 +21,14 @@ defmodule Core.Messenger.Handlers.GreetingHandler do
   @doc """
   Fall Back for unknow messages
   """
-  def handle_event({ :message, _, user, _ }, messages), do: Sender.send(user, "Oooopppsss, nao entendi, poderia repetir??")
+  def handle_event({ :message, intent, user, _ }, messages) do
+    # Intent
+    IO.inspect intent
+
+    # Send msg
+    Sender.send(user, "Opa, não entendi, tente algo como: \n \"Oi\"")
+
+    # OK!
+    { :ok, messages }
+  end
 end

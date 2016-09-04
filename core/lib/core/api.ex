@@ -33,10 +33,6 @@ defmodule Core.API do
     # Read the request body
     { :ok, body, conn } = read_body(conn)
 
-    body
-      |> Poison.decode!
-      |> IO.inspect
-
     # Send to the parser
     Core.Messenger.EventServer.receive body
 

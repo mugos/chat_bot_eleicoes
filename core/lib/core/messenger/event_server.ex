@@ -14,6 +14,7 @@ defmodule Core.Messenger.EventServer do
   def start_link([]) do
     { :ok, pid } = GenEvent.start_link([{ :name, @server }])
     add_handler(Core.Messenger.Handlers.GreetingHandler)
+    add_handler(Core.Messenger.Handlers.AboutCandidates)
     { :ok, pid }
   end
 
