@@ -29,9 +29,9 @@ defmodule Core.Messenger.EventServer do
 
   @doc """
   """
-  def challange(%{"hub.mode" => "subscribe",
-                  "hub.verify_token" => token,
-                  "hub.challenge" => challenge} = params) do
+  def challange(%{ "hub.mode" => "subscribe",
+                   "hub.verify_token" => token,
+                   "hub.challenge" => challenge } = params) do
     # Check if the token is the same
     case token == token do
       true -> { :ok, challenge }
