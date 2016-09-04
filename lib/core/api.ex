@@ -33,12 +33,12 @@ defmodule Core.API do
     # Read the request body
     { :ok, body, conn } = read_body(conn)
 
-    res = body |> Poison.decode! |> Core.Mock.analyze
+    # res = body |> Poison.decode! |> Core.Mock.analyze
 
-    IO.inspect res
+    # IO.inspect res
 
     # Send to the parser
-    # Core.Messenger.EventServer.receive body
+    Core.Messenger.EventServer.receive body
 
     # Respond the 200
     conn |> resp(200, "OK")
