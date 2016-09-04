@@ -41,25 +41,24 @@ defmodule Core.Messenger.EventServer do
   def challenge(_), do: :error
 
   @doc """
+  Receive the message from WebHook
   """
-  def receive(params) when is_bitstring(params) do
+  def receive(params) when is_bitstring(params), do: _receive(params)
+  def receive(%{"object" => "page"} = params), do: _receive(params)
+  def receive(_), do: { :error, "Bad request" }
+
+  # This will classify the question and parse everythin that it needs
+  defp _receive(params) do
+    # Parse the message
     response = Core.Messenger.Types.Response.parse(params)
+
+    # Log the message
     Logger.info("Recevied messsages #{inspect(response)}")
 
-    {:ok, response}
+    # Return!
+    { :ok, response }
   end
 
-  def receive(%{"object" => "page"} = params) do
-    response = Core.Messenger.Types.Response.parse(params)
-    Logger.info("Recevied messsages #{inspect(response)}")
-
-    {:ok, response}
-  end
-
-  def receive(params) do
-    Logger.info("Webhook bad request with params #{inspect(params)}")
-    :error
-  end
-
+  # Verification token
   defp app_token, do: Application.get_env(:core, :fb)[:verification]
 end
