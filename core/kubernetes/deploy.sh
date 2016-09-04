@@ -22,9 +22,16 @@ dg() {
 VERSION=$(cat ../VERSION)
 
 docker-compose -f ../production.yml build
+
 docker tag hackathon-core-web "gcr.io/yebo-project/hackathon-core-web:$VERSION"
 docker tag hackathon-core-web "gcr.io/yebo-project/hackathon-core-web:latest"
 dg gcloud docker push "gcr.io/yebo-project/hackathon-core-web:$VERSION"
 dg gcloud docker push "gcr.io/yebo-project/hackathon-core-web:latest"
 
+docker tag hackathon-core-ngrok "gcr.io/yebo-project/hackathon-core-ngrok:$VERSION"
+docker tag hackathon-core-ngrok "gcr.io/yebo-project/hackathon-core-ngrok:latest"
+dg gcloud docker push "gcr.io/yebo-project/hackathon-core-ngrok:$VERSION"
+dg gcloud docker push "gcr.io/yebo-project/hackathon-core-ngrok:latest"
+
 echo "dg kubectl rolling-update hackathon-core-web --image=\"gcr.io/yebo-project/hackathon-core-web:$VERSION\""
+echo "dg kubectl rolling-update hackathon-core-web --image=\"gcr.io/yebo-project/hackathon-core-ngrok:$VERSION\""

@@ -18,8 +18,8 @@ dg() {
 }
 
 recreate() {
-  # dg gcloud compute disks delete hackathon-core-web-disk
-  # dg gcloud compute disks create --size=100GB --zone=us-east1-d hackathon-core-web-disk
+  dg gcloud compute disks delete hackathon-data
+  dg gcloud compute disks create --size=100GB --zone=us-east1-d hackathon-data
   # local function that list gcloud disks
   list_disks
 }
