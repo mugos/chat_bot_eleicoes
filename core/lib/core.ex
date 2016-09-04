@@ -9,7 +9,7 @@ defmodule Core do
     # # Define workers and child supervisors to be supervised
     children = [
       # Starts a worker by calling: Core.Worker.start_link(arg1, arg2, arg3)
-      worker(Core.Database, [[host: "rethinkdb", port: 28015]]),
+      worker(Core.Database, [[host: "hackathon-core-rethinkdb", port: 28015]]),
       Plug.Adapters.Cowboy.child_spec(:http, Core.API, [], [port: 8000])
     ]
 
