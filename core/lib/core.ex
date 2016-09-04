@@ -10,7 +10,7 @@ defmodule Core do
     children = [
       # Starts a worker by calling: Core.Worker.start_link(arg1, arg2, arg3)
       worker(Core.Database, [[host: "rethinkdb", port: 28015]]),
-      Plug.Adapters.Cowboy.child_spec(:http, Core.API, [], [port: 8000]),
+      Plug.Adapters.Cowboy.child_spec(:http, Core.API, [], [port: Application.get_env(:core, :port)]),
       worker(Core.Messenger.EventServer, [[]])
     ]
 

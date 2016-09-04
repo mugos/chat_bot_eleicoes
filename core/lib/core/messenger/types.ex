@@ -86,9 +86,8 @@ defmodule Core.Messenger.Types.Response do
   """
   @spec message_texts(Core.Messenger.Types.Response) :: [String.t]
   def message_texts(%{entry: entries}) do
-    messaging =
     Enum.flat_map(entries, &Map.get(&1, :messaging))
-    |> Enum.map(&( &1 |> Map.get(:message) |> Map.get(:text)))
+      |> Enum.map(&( &1 |> Map.get(:message) |> Map.get(:text)))
   end
 
   @doc """
@@ -96,9 +95,8 @@ defmodule Core.Messenger.Types.Response do
   """
   @spec message_senders(Core.Messenger.Types.Response) :: [String.t]
   def message_senders(%{entry: entries}) do
-    messaging =
     Enum.flat_map(entries, &Map.get(&1, :messaging))
-    |> Enum.map(&( &1 |> Map.get(:sender) |> Map.get(:id)))
+      |> Enum.map(&( &1 |> Map.get(:sender) |> Map.get(:id)))
   end
 
 

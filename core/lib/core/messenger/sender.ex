@@ -24,34 +24,25 @@ defmodule Core.Messenger.Sender do
     res
   end
 
-  @doc """
-  Generate the JSON payload for sending a message
-  """
+  # Generate the JSON payload for sending a message
   defp payload(recepient, message) do
     %{ recipient: %{id: recepient}, message: %{text: message} }
-      |> Poison.encode
+      |> Poison.encode!
       |> elem(1)
   end
 
-  @doc """
-  Send a Post using HTTPotion
-  """
+  # Send a Post using HTTPotion
   defp post(body: body) do
     HTTPotion.post url, body: body, headers: ["Content-Type": "application/json"]
   end
 
-  @doc """
-  return the url to hit to send the message
-  """
+  # Return the url to hit to send the message
   defp url do
     query = "access_token=#{page_token}"
     "https://graph.facebook.com/v2.6/me/messages?#{query}"
   end
 
-
-  @doc """
-  """
   defp page_token do
-    Application.get_env(:facebook_messenger, :facebook_page_token)
+    Application.get_env(:core, :fb)[:token]
   end
 end
