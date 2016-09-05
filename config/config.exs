@@ -12,11 +12,11 @@ end
 
 # Config messenger
 config :core, :fb,
-  token: "EAACzIvBu0y0BAIEYQRFAVzxkkJAOER6eoPvA8nwYylooILV9xJG6tuymVLxpKDvBtPfZBREd1r2wkZBqzOI2mKpV3hX8n6cRSNO8qKBPTGO9Y6H4GWIu2NHcNJZBaSJWwSWVNDJfQrZAwdLINyB2CXtbzbG2kNInzHKGfsaZBgAZDZD",
-  verification: "T0pS3Cr3T"
+  token: "",
+  verification: ""
 
 # Luis Configurations
 config :core, :luis,
-  id: "35c27d37-9c52-453c-9ee9-c5f34db8cdf1",
-  token: "35d9869c0b9444c88f57342cc2d03379",
-  key: "2f618c2015ef48e1b899490fc7a2046b"
+  id: "",
+  token: "",
+  key: ""
